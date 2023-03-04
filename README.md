@@ -15,7 +15,7 @@ To use this project, follow these steps:
 1. Create your working environment.  See [Set up Python](http://sourabhbajaj.com/mac-setup/Python/README.html).
 2. Install dependences using `pip`.  
 3. Download this project.
-4. Run `source venv/bin/activate` Activate python virtual environment
+4. Create and activate python virtual environment using `virtualenv venv && source venv/bin/activate`
 5. Run `pip install -r requirements.txt` to install packages
 6. Create Postgresql database with name `test_crm_db`. Run `docker-compose up -d` if there is no postgres service installed in local
 7. Run `python manage.py migrate` to migrate database.

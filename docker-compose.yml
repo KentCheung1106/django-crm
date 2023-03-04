@@ -1,0 +1,10 @@
+postgres:
+  container_name: test_crm_postgres
+  environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=password
+  image: postgres
+  volumes:
+    - postgres-data:/var/lib/postgresql/data
+  ports:
+    - 5432:5432

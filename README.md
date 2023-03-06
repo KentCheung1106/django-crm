@@ -24,6 +24,9 @@ To use this project, follow these steps:
 - API root: [http://localhost:8000/](http://localhost:8000/) 
 - Swagger: [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
 
+## Running test cases with mocked transaction
+Run `python manage.py test --pattern="*_tests.py"`
+
 ## Genarating `requirements.txt`
 
 Run `pip freeze --local > requirements.txt`

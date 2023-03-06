@@ -2,6 +2,10 @@
 
 A starter project template to build a RESTful Web API using [Django REST framework](http://www.django-rest-framework.org/).
 
+This project consists of simple CRM components (Team, Sale, Customer). The models are bound with one-to-many relationships.
+
+This project is developed with package by layer approach, so that modules are divided by the architecture layer, i.e. models, services, views, serializers, tests, for quicker reference.
+
 ## Features
 
 - Based on [Django REST framework official tutorial](http://www.django-rest-framework.org/tutorial/quickstart/).

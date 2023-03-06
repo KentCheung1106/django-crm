@@ -4,7 +4,7 @@ from django.db import transaction
 from ..models.customer import Customer
 from ..models.sale import Sale
 from ..serializers.customer import CustomerSerializer
-from ..serializers.sale_customer import SaleCustomerRequestSerializer
+from ..serializers.sale_customer_request import SaleCustomerRequestSerializer
 
 
 class SaleCustomerService:
@@ -17,10 +17,10 @@ class SaleCustomerService:
             with transaction.atomic():
                 sale = Sale.objects.select_for_update().get(id=sale_id)
                 customers = Customer.objects.filter(id__in=dto['customerIds'])
-                sale.customer_set.add(*customers)
+                sale.customers.add(*customers)
 
                 sale.save()
 
-                return CustomerSerializer(sale.customer_set.all(), many=True).data
+                return CustomerSerializer(sale.customers.all(), many=True).data
         except Exception as e:
             raise BadRequest(e)

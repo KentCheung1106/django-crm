@@ -10,9 +10,8 @@ from ..serializers.sale_request import SaleRequestSerializer
 from ..services.sale import SaleService
 
 
-class SaleView(generics.GenericAPIView,
-                   mixins.ListModelMixin,
-                   mixins.CreateModelMixin,
+class SaleDetailView(generics.GenericAPIView,
+                   mixins.RetrieveModelMixin,
                    mixins.UpdateModelMixin,
     ):
     # API endpoint that allows creation of a new crm
@@ -20,11 +19,13 @@ class SaleView(generics.GenericAPIView,
     lookup_field = 'id'
     serializer_class = SaleRequestSerializer
 
-    def get(self, request):
+    def get(self, request, sale_id=None):
         service = SaleService()
-        return Response(service.getAll())
+        return Response(service.getById(sale_id))
 
-    def post(self, request):
+    def put(self, request, sale_id):
         service = SaleService()
-        return Response(service.create(request.data))
-
+        try:
+            return Response(service.update(sale_id, request.data))
+        except Exception as e:
+            return JsonResponse({'error': True, 'content': str(e)}, status=400)

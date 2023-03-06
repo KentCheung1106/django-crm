@@ -4,20 +4,20 @@ from rest_framework.response import Response
 
 from rest_framework import generics, mixins
 
-from ..serializers.sale_customer import SaleCustomerRequestSerializer
+from ..serializers.sale_customer_request import SaleCustomerRequestSerializer
 from ..services.sale_customer import SaleCustomerService
 
 
 class SaleCustomerView(generics.GenericAPIView,
                    mixins.ListModelMixin,
                    mixins.UpdateModelMixin):
+    serializer_class = SaleCustomerRequestSerializer
 
-
-    def get(self, request, sale_id):
+    def get(self, request, team_code, sale_id):
         service = SaleCustomerService()
         return Response(service.getSaleCustomers(sale_id))
 
-    def put(self, request, sale_id):
+    def put(self, request, team_code, sale_id):
         service = SaleCustomerService()
         dto = SaleCustomerRequestSerializer(request.data)
 
